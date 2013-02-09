@@ -1,0 +1,57 @@
+[submodule "bionic"]
+	path = bionic
+	url = git://github.com/android/platform_bionic.git
+[submodule "build"]
+	path = build
+	url = git://github.com/zeldin/platform_build.git
+[submodule "dalvik"]
+	path = dalvik
+	url = git://github.com/android/platform_dalvik.git
+[submodule "development"]
+	path = development
+	url = git://github.com/android/platform_development.git
+[submodule "external/expat"]
+	path = external/expat
+	url = git://github.com/android/platform_external_expat.git
+[submodule "external/libpng"]
+	path = external/libpng
+	url = git://github.com/android/platform_external_libpng.git
+[submodule "external/libselinux"]
+	path = external/libselinux
+	url = https://android.googlesource.com/platform/external/libselinux.git
+[submodule "external/openssl"]
+	path = external/openssl
+	url = git://github.com/android/platform_external_openssl.git
+[submodule "external/safe-iop"]
+	path = external/safe-iop
+	url = git://github.com/android/platform_external_safe-iop.git
+[submodule "external/sqlite"]
+	path = external/sqlite
+	url = git://github.com/android/platform_external_sqlite.git
+[submodule "external/zlib"]
+	path = external/zlib
+	url = git://github.com/android/platform_external_zlib.git
+[submodule "frameworks/native"]
+	path = frameworks/native
+	url = https://android.googlesource.com/platform/frameworks/native.git
+[submodule "libnativehelper"]
+	path = libnativehelper
+	url = https://android.googlesource.com/platform/libnativehelper.git
+[submodule "prebuilts/tools"]
+	path = prebuilts/tools
+	url = https://android.googlesource.com/platform/prebuilts/tools
+[submodule "sdk"]
+	path = sdk
+	url = https://android.googlesource.com/platform/sdk.git
+[submodule "system/extras"]
+	path = system/extras
+	url = https://android.googlesource.com/platform/system/extras.git
+[submodule "external/qemu"]
+	path = external/qemu
+	url = git://github.com/zeldin/platform_external_qemu.git
+[submodule "frameworks/base"]
+	path = frameworks/base
+	url = git://github.com/zeldin/platform_frameworks_base.git
+[submodule "system/core"]
+	path = system/core
+	url = git://github.com/zeldin/platform_system_core.git
