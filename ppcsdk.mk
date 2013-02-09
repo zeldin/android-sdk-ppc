@@ -39,8 +39,6 @@ ppcsdk_subdir_makefiles := \
 
 include build/core/root.mk
 
-MY_ANDROID_DIR := /usr/local/android
-
 MY_TOOLS := \
 	$(HOST_OUT_EXECUTABLES)/dmtracedump \
 	$(HOST_OUT_EXECUTABLES)/etc1tool \
