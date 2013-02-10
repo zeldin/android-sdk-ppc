@@ -18,18 +18,26 @@ ppcsdk_subdirs = \
 	dalvik/dexdump \
 	dalvik/libdex \
 	dalvik/tools \
+	external/apache-http \
 	external/ant-glob \
+	external/bouncycastle \
 	external/easymock \
 	external/eclipse-windowbuilder \
 	external/expat \
 	external/hamcrest \
 	external/junit \
+	external/liblzf \
+	external/libphonenumber \
 	external/libpng \
 	external/zlib \
+	external/nist-sip \
 	external/openssl \
 	external/proguard \
+	external/protobuf \
 	external/libselinux \
+	external/stlport \
 	external/sqlite \
+	external/tagsoup \
 	external/qemu \
 	sdk/emulator/mksdcard \
 	sdk/emulator/opengl \

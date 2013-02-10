@@ -91,3 +91,30 @@
 [submodule "frameworks/opt/telephony"]
 	path = frameworks/opt/telephony
 	url = https://android.googlesource.com/platform/frameworks/opt/telephony.git
+[submodule "external/stlport"]
+	path = external/stlport
+	url = https://android.googlesource.com/platform/external/stlport.git
+[submodule "external/apache-http"]
+	path = external/apache-http
+	url = https://android.googlesource.com/platform/external/apache-http.git
+[submodule "external/tagsoup"]
+	path = external/tagsoup
+	url = https://android.googlesource.com/platform/external/tagsoup.git
+[submodule "external/nist-sip"]
+	path = external/nist-sip
+	url = https://android.googlesource.com/platform/external/nist-sip.git
+[submodule "external/libphonenumber"]
+	path = external/libphonenumber
+	url = https://android.googlesource.com/platform/external/libphonenumber.git
+[submodule "external/bouncycastle"]
+	path = external/bouncycastle
+	url = https://android.googlesource.com/platform/external/bouncycastle.git
+[submodule "external/protobuf"]
+	path = external/protobuf
+	url = https://android.googlesource.com/platform/external/protobuf.git
+[submodule "external/liblzf"]
+	path = external/liblzf
+	url = https://android.googlesource.com/platform/external/liblzf.git
+[submodule "external/eclipse-basebuilder"]
+	path = external/eclipse-basebuilder
+	url = https://android.googlesource.com/platform/external/eclipse-basebuilder.git
