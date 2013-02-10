@@ -118,3 +118,6 @@
 [submodule "external/eclipse-basebuilder"]
 	path = external/eclipse-basebuilder
 	url = https://android.googlesource.com/platform/external/eclipse-basebuilder.git
+[submodule "prebuilts/eclipse"]
+	path = prebuilts/eclipse
+	url = https://android.googlesource.com/platform/prebuilts/eclipse.git
