@@ -107,6 +107,12 @@ opengl: $(MY_GL_LIBS)
 	cp $(MY_GL_LIBS) $(MY_ANDROID_DIR)/tools/lib/
 
 monitor: $(HOST_OUT_EXECUTABLES)/monitor
+	cp -TR $(HOST_OUT)/eclipse/monitor-linux.gtk.ppc/monitor $(MY_ANDROID_DIR)/tools/lib/monitor-ppc
+	cp -TR $(HOST_OUT)/eclipse/monitor-linux.gtk.ppc64/monitor $(MY_ANDROID_DIR)/tools/lib/monitor-ppc64
 
-archdep: tools opengl
+swt_jar: $(HOST_OUT_JAVA_LIBRARIES)/swt.jar
+	test -d $(MY_ANDROID_DIR)/tools/lib/ppc || mkdir $(MY_ANDROID_DIR)/tools/lib/ppc
+	cp $(HOST_OUT_JAVA_LIBRARIES)/swt.jar $(MY_ANDROID_DIR)/tools/lib/ppc/
+
+archdep: tools opengl monitor swt_jar
 
