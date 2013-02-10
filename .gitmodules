@@ -67,3 +67,9 @@
 [submodule "external/easymock"]
 	path = external/easymock
 	url = https://android.googlesource.com/platform/external/easymock.git
+[submodule "prebuilts/sdk"]
+	path = prebuilts/sdk
+	url = https://android.googlesource.com/platform/prebuilts/sdk.git
+[submodule "external/junit"]
+	path = external/junit
+	url = https://android.googlesource.com/platform/external/junit.git
