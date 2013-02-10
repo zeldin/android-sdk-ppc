@@ -12,6 +12,8 @@ ppcsdk_subdirs = \
 	frameworks/base/tools \
 	frameworks/native/libs \
 	frameworks/native/opengl/libs \
+	frameworks/support \
+	frameworks/opt/telephony \
 	development/tools/etc1tool \
 	dalvik/dexdump \
 	dalvik/libdex \

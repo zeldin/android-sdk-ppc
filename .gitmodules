@@ -85,3 +85,9 @@
 [submodule "external/proguard"]
 	path = external/proguard
 	url = https://android.googlesource.com/platform/external/proguard.git
+[submodule "frameworks/support"]
+	path = frameworks/support
+	url = https://android.googlesource.com/platform/frameworks/support.git
+[submodule "frameworks/opt/telephony"]
+	path = frameworks/opt/telephony
+	url = https://android.googlesource.com/platform/frameworks/opt/telephony.git
