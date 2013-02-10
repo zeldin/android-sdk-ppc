@@ -39,7 +39,7 @@
 	url = https://android.googlesource.com/platform/libnativehelper.git
 [submodule "prebuilts/tools"]
 	path = prebuilts/tools
-	url = https://android.googlesource.com/platform/prebuilts/tools
+	url = git://github.com/zeldin/platform_prebuilts_tools.git
 [submodule "sdk"]
 	path = sdk
 	url = git://github.com/zeldin/platform_sdk.git
