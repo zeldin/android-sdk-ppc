@@ -55,3 +55,9 @@
 [submodule "system/core"]
 	path = system/core
 	url = git://github.com/zeldin/platform_system_core.git
+[submodule "prebuilts/devtools"]
+	path = prebuilts/devtools
+	url = https://android.googlesource.com/platform/prebuilts/devtools
+[submodule "external/ant-glob"]
+	path = external/ant-glob
+	url = https://android.googlesource.com/platform/external/ant-glob.git

@@ -16,6 +16,7 @@ ppcsdk_subdirs = \
 	dalvik/dexdump \
 	dalvik/libdex \
 	dalvik/tools \
+	external/ant-glob \
 	external/expat \
 	external/libpng \
 	external/zlib \
