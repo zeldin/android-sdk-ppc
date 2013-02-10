@@ -25,6 +25,7 @@ ppcsdk_subdirs = \
 	external/libpng \
 	external/zlib \
 	external/openssl \
+	external/proguard \
 	external/libselinux \
 	external/sqlite \
 	external/qemu \

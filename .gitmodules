@@ -79,3 +79,9 @@
 [submodule "prebuilts/misc"]
 	path = prebuilts/misc
 	url = https://android.googlesource.com/platform/prebuilts/misc.git
+[submodule "libcore"]
+	path = libcore
+	url = https://android.googlesource.com/platform/libcore.git
+[submodule "external/proguard"]
+	path = external/proguard
+	url = https://android.googlesource.com/platform/external/proguard.git
