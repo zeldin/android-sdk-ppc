@@ -8,14 +8,14 @@ ppcsdk_subdirs = \
 	system/core/libsparse \
 	system/core/libzipfile \
 	system/extras/ext4_utils \
-	frameworks/base/libs \
-	frameworks/base/tools \
+	frameworks/base \
 	frameworks/native/libs \
 	frameworks/native/opengl/libs \
 	frameworks/support \
 	frameworks/opt/telephony \
 	development/tools/etc1tool \
 	dalvik/dexdump \
+	dalvik/dx \
 	dalvik/libdex \
 	dalvik/tools \
 	external/apache-http \
@@ -47,6 +47,13 @@ ppcsdk_subdirs = \
 	sdk/sdkmanager/libs \
 	sdk/layoutlib_api \
 	sdk/device_validator/dvlib \
+	sdk/ninepatch \
+	sdk/rule_api \
+	sdk/ddms/libs \
+	sdk/uiautomatorviewer \
+	sdk/testutils \
+	sdk/hierarchyviewer2/libs \
+	sdk/traceview \
 	prebuilds/sdk \
 	prebuilts/tools \
 	prebuilts/misc \
