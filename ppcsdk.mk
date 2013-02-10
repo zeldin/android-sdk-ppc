@@ -17,6 +17,8 @@ ppcsdk_subdirs = \
 	dalvik/libdex \
 	dalvik/tools \
 	external/ant-glob \
+	external/easymock \
+	external/eclipse-windowbuilder \
 	external/expat \
 	external/libpng \
 	external/zlib \

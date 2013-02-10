@@ -61,3 +61,9 @@
 [submodule "external/ant-glob"]
 	path = external/ant-glob
 	url = https://android.googlesource.com/platform/external/ant-glob.git
+[submodule "external/eclipse-windowbuilder"]
+	path = external/eclipse-windowbuilder
+	url = https://android.googlesource.com/platform/external/eclipse-windowbuilder.git
+[submodule "external/easymock"]
+	path = external/easymock
+	url = https://android.googlesource.com/platform/external/easymock.git
