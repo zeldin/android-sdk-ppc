@@ -20,6 +20,7 @@ ppcsdk_subdirs = \
 	external/easymock \
 	external/eclipse-windowbuilder \
 	external/expat \
+	external/hamcrest \
 	external/junit \
 	external/libpng \
 	external/zlib \
@@ -37,6 +38,7 @@ ppcsdk_subdirs = \
 	sdk/device_validator/dvlib \
 	prebuilds/sdk \
 	prebuilts/tools \
+	prebuilts/misc \
 	libcore
 
 ppcsdk_subdir_makefiles := \

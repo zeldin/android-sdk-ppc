@@ -73,3 +73,9 @@
 [submodule "external/junit"]
 	path = external/junit
 	url = https://android.googlesource.com/platform/external/junit.git
+[submodule "external/hamcrest"]
+	path = external/hamcrest
+	url = https://android.googlesource.com/platform/external/hamcrest.git
+[submodule "prebuilts/misc"]
+	path = prebuilts/misc
+	url = https://android.googlesource.com/platform/prebuilts/misc.git
