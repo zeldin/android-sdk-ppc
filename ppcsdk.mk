@@ -90,6 +90,7 @@ MY_PLATFORM_TOOLS := \
 tools: $(MY_TOOLS) $(MY_PLATFORM_TOOLS)
 	$(HOST_OUT_EXECUTABLES)/adb kill-server
 	cp $(MY_TOOLS) $(MY_ANDROID_DIR)/tools/
+	test -d $(MY_ANDROID_DIR)/platform-tools || mkdir $(MY_ANDROID_DIR)/platform-tools
 	cp $(MY_PLATFORM_TOOLS) $(MY_ANDROID_DIR)/platform-tools/
 	rm -f $(MY_ANDROID_DIR)/platform-tools/llvm-rs-cc
 
