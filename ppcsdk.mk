@@ -74,7 +74,6 @@ MY_TOOLS := \
 	$(HOST_OUT_EXECUTABLES)/emulator \
 	$(HOST_OUT_EXECUTABLES)/emulator-arm \
 	$(HOST_OUT_EXECUTABLES)/emulator-mips \
-	$(HOST_OUT_EXECUTABLES)/emulator-ui \
 	$(HOST_OUT_EXECUTABLES)/emulator-x86 \
 	$(HOST_OUT_EXECUTABLES)/emulator64-arm \
 	$(HOST_OUT_EXECUTABLES)/emulator64-mips \
