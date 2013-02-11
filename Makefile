@@ -13,8 +13,8 @@ ANDROID_JAVA_HOME=/usr/lib/jvm/ibm-jdk-bin-1.6
 
 setup-submodules:
 	@echo Setting up submodules, please wait...
-	git submodules init
-	git submodules update
+	git submodule init
+	git submodule update
 	@echo Submodules set up, your build will now resume
 
 download-eclipse-drops:
