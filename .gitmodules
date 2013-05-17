@@ -121,3 +121,6 @@
 [submodule "prebuilts/eclipse"]
 	path = prebuilts/eclipse
 	url = https://android.googlesource.com/platform/prebuilts/eclipse.git
+[submodule "external/okhttp"]
+	path = external/okhttp
+	url = https://android.googlesource.com/platform/external/okhttp.git

@@ -32,6 +32,7 @@ ppcsdk_subdirs = \
 	external/zlib \
 	external/nist-sip \
 	external/openssl \
+	external/okhttp \
 	external/proguard \
 	external/protobuf \
 	external/libselinux \
