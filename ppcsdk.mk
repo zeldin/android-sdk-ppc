@@ -81,18 +81,23 @@ MY_TOOLS := \
 	$(HOST_OUT_EXECUTABLES)/emulator64-x86
 
 MY_PLATFORM_TOOLS := \
-	$(HOST_OUT_EXECUTABLES)/aapt \
 	$(HOST_OUT_EXECUTABLES)/adb \
-	$(HOST_OUT_EXECUTABLES)/aidl \
-	$(HOST_OUT_EXECUTABLES)/dexdump \
 	$(HOST_OUT_EXECUTABLES)/fastboot
 
-tools: $(MY_TOOLS) $(MY_PLATFORM_TOOLS)
+MY_BUILD_TOOLS := \
+	$(HOST_OUT_EXECUTABLES)/aapt \
+	$(HOST_OUT_EXECUTABLES)/aidl \
+	$(HOST_OUT_EXECUTABLES)/dexdump
+
+tools: $(MY_TOOLS) $(MY_PLATFORM_TOOLS) $(MY_BUILD_TOOLS)
 	$(HOST_OUT_EXECUTABLES)/adb kill-server
 	cp $(MY_TOOLS) $(MY_ANDROID_DIR)/tools/
 	test -d $(MY_ANDROID_DIR)/platform-tools || mkdir $(MY_ANDROID_DIR)/platform-tools
 	cp $(MY_PLATFORM_TOOLS) $(MY_ANDROID_DIR)/platform-tools/
-	rm -f $(MY_ANDROID_DIR)/platform-tools/llvm-rs-cc
+	test -d $(MY_ANDROID_DIR)/build-tools || mkdir $(MY_ANDROID_DIR)/build-tools
+	test -d $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER) || mkdir $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)
+	cp $(MY_BUILD_TOOLS) $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/
+	rm -f $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/llvm-rs-cc
 
 MY_GL_LIBS := \
 	$(HOST_OUT_SHARED_LIBRARIES)/libOpenglRender.so \
