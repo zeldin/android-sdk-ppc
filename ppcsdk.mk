@@ -97,7 +97,7 @@ tools: $(MY_TOOLS) $(MY_PLATFORM_TOOLS) $(MY_BUILD_TOOLS)
 	test -d $(MY_ANDROID_DIR)/build-tools || mkdir $(MY_ANDROID_DIR)/build-tools
 	test -d $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER) || mkdir $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)
 	cp $(MY_BUILD_TOOLS) $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/
-	rm -f $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/llvm-rs-cc
+	cp dummy-command $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/llvm-rs-cc
 
 MY_GL_LIBS := \
 	$(HOST_OUT_SHARED_LIBRARIES)/libOpenglRender.so \
