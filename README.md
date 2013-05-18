@@ -26,7 +26,7 @@ Before you start, check that you have the following:
 Installation
 ============
 
-* First, download `android-sdk_r21.0.1-linux.tgz` from
+* First, download `android-sdk_r22-linux.tgz` from
   <http://developer.android.com/sdk/index.html>.  This contains the
   architecture independant part of the tools (and a bunch of x86 binaries,
   go figure...)
@@ -49,18 +49,24 @@ Installation
 
 * The first thing you should do is to upgrade the Android SDK Tools to the
   latest version (if that's not the version you already have), and install
-  the Android SDK Platform-tools.  Ignore any warnings about ADB server
-  failing to start or stop.  When the latest version of both packages is
-  installed (several upgrade steps may be needed), quit the Android SDK
-  Manager.
+  the Android SDK Platform-tools and Android SDK Build-tools.  Ignore any
+  warnings about ADB server failing to start or stop.  When the latest
+  version of both packages is installed (several upgrade steps may be needed),
+  quit the Android SDK Manager.
 
-* Unfortunately, installing/upgrading the Tools and/or Platform-tools package,
-  like you just did, will overwrite the PPC binaries with x86 binaries.
-  (This is  the reason why the ADB server stop/start fails, by the way.)
-  So now,  you will need to run `make` in `android-sdk-ppc` once more.
-  It will be much faster this time though, since everything is compiled
-  already.  Remember to repeat this process everytime you upgrade the Tools
-  or Platform-tools packages through the Android SDK Manager.
+* Unfortunately, installing/upgrading the Tools, Platform-tools  and/or
+  Build-tools package, like you just did, will overwrite the PPC binaries
+  with x86 binaries.  (This is  the reason why the ADB server stop/start
+  fails, by the way.)  So now,  you will need to run `make` in
+  `android-sdk-ppc` once more.  It will be much faster this time though,
+  since everything is compiled already.  Remember to repeat this process
+  everytime you upgrade the Tools or Platform-tools packages through the
+  Android SDK Manager.
+
+* Each time you upgrade Build-tools, make sure the `BUILD_TOOLS_VER` in
+  the Makefile matches the latest version you have under the `build-tools`
+  directory in `ANDROID_INSTALL_DIR`.  This will allow `make` to install
+  the Build-tools in the correct directory.
 
 * After reinstalling the PPC binaries, you can start the Android SDK Manager
   again, and install the API:s etc. you need.
@@ -69,5 +75,6 @@ Installation
 Limitations
 ===========
 
-* The Platform-tool `llvm-rs-cc` is not built.  It is removed instead.
+* The Build-tool `llvm-rs-cc` is not built.  It is replaced with a
+  placeholder script instead.
 
