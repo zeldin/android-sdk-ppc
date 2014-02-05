@@ -124,3 +124,15 @@
 [submodule "external/okhttp"]
 	path = external/okhttp
 	url = https://android.googlesource.com/platform/external/okhttp.git
+[submodule "tools/base"]
+	path = tools/base
+	url = git://github.com/zeldin/platform_tools_base.git
+[submodule "tools/swt"]
+	path = tools/swt
+	url = https://android.googlesource.com/platform/tools/swt.git
+[submodule "tools/external/gradle"]
+	path = tools/external/gradle
+	url = https://android.googlesource.com/platform/tools/external/gradle.git
+[submodule "tools/external/fat32lib"]
+	path = tools/external/fat32lib
+	url = https://android.googlesource.com/platform/tools/external/fat32lib.git
