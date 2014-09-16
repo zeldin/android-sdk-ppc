@@ -21,6 +21,6 @@ setup-submodules:
 
 download-eclipse-drops:
 	@echo Downloading Eclipse drops, please wait...
-	@wget -O prebuilts/eclipse/platform/org.eclipse.platform-3.8.2.zip http://download.eclipse.org/eclipse/downloads/drops/R-3.8.2-201301310800/org.eclipse.platform-3.8.2.zip
-	@wget -O prebuilts/eclipse/deltapack/eclipse-3.8.2-delta-pack.zip http://download.eclipse.org/eclipse/downloads/drops/R-3.8.2-201301310800/eclipse-3.8.2-delta-pack.zip
+	@wget -O prebuilts/eclipse/platform/org.eclipse.platform-3.8.2.zip http://archive.eclipse.org/eclipse/downloads/drops/R-3.8.2-201301310800/org.eclipse.platform-3.8.2.zip
+	@wget -O prebuilts/eclipse/deltapack/eclipse-3.8.2-delta-pack.zip http://archive.eclipse.org/eclipse/downloads/drops/R-3.8.2-201301310800/eclipse-3.8.2-delta-pack.zip
 	@echo Eclipse drops downloaded, your build will now resume
