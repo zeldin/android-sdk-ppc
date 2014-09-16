@@ -136,3 +136,27 @@
 [submodule "tools/external/fat32lib"]
 	path = tools/external/fat32lib
 	url = https://android.googlesource.com/platform/tools/external/fat32lib.git
+[submodule "frameworks/compile/slang"]
+	path = frameworks/compile/slang
+	url = https://android.googlesource.com/platform/frameworks/compile/slang
+[submodule "external/llvm"]
+	path = external/llvm
+	url = git://github.com/zeldin/platform_external_llvm.git
+[submodule "external/libcxx"]
+	path = external/libcxx
+	url = https://android.googlesource.com/platform/external/libcxx
+[submodule "external/clang"]
+	path = external/clang
+	url = https://android.googlesource.com/platform/external/clang
+[submodule "frameworks/compile/libbcc"]
+	path = frameworks/compile/libbcc
+	url = git://github.com/zeldin/platform_frameworks_compile_libbcc.git
+[submodule "frameworks/compile/mclinker"]
+	path = frameworks/compile/mclinker
+	url = https://android.googlesource.com/platform/frameworks/compile/mclinker
+[submodule "frameworks/rs"]
+	path = frameworks/rs
+	url = https://android.googlesource.com/platform/frameworks/rs
+[submodule "frameworks/compile/linkloader"]
+	path = frameworks/compile/linkloader
+	url = https://android.googlesource.com/platform/frameworks/compile/linkloader

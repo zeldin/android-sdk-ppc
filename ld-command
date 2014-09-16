@@ -1,0 +1,32 @@
+#!/bin/sh
+case "$0" in
+  *i686-linux-android-ld)
+     target=i686-linux-android
+     targetprefix=x86
+     ;;
+  *mipsel-linux-android-ld)
+     target=mipsel-linux-android
+     targetprefix=$target
+     ;;
+  *arm-linux-androideabi-ld)
+     target=arm-linux-androideabi
+     targetprefix=$target
+     ;;
+  *)
+     echo >&2 "Unknown command $0"
+     exit 1
+     ;;
+esac
+if [ -z "${ANDROID_NDK}" ]; then
+  echo >&2 '$ANDROID_NDK not set, unable to locate '${target}-ld
+  exit 1
+fi
+versions=`ls -1 "${ANDROID_NDK}"/toolchains | sed -ne "s/^${targetprefix}-//p" | sort -nr`
+for ver in 4.7 $versions; do
+  ld="${ANDROID_NDK}"/toolchains/${targetprefix}-"$ver"/prebuilt/linux-ppc/bin/${target}-ld
+  if [ -x "$ld" ]; then
+    exec "$ld" "$@"
+  fi
+done
+echo >&2 'No version of '${target}-ld" found in ${ANDROID_NDK}"
+exit 1
