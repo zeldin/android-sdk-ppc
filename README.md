@@ -72,9 +72,3 @@ Installation
   again, and install the API:s etc. you need.
 
 
-Limitations
-===========
-
-* The Build-tool `llvm-rs-cc` is not built.  It is replaced with a
-  placeholder script instead.
-
