@@ -6,7 +6,7 @@
 	url = git://github.com/zeldin/platform_build.git
 [submodule "dalvik"]
 	path = dalvik
-	url = git://github.com/android/platform_dalvik.git
+	url = git://github.com/zeldin/platform_dalvik.git
 [submodule "development"]
 	path = development
 	url = git://github.com/android/platform_development.git
