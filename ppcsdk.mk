@@ -79,12 +79,7 @@ ppcsdk_subdir_makefiles := \
 include build/core/root.mk
 
 MY_TOOLS := \
-	$(HOST_OUT_EXECUTABLES)/dmtracedump \
-	$(HOST_OUT_EXECUTABLES)/etc1tool \
-	$(HOST_OUT_EXECUTABLES)/hprof-conv \
 	$(HOST_OUT_EXECUTABLES)/mksdcard \
-	$(HOST_OUT_EXECUTABLES)/sqlite3 \
-	$(HOST_OUT_EXECUTABLES)/zipalign \
 	$(HOST_OUT_EXECUTABLES)/emulator \
 	$(HOST_OUT_EXECUTABLES)/emulator-arm \
 	$(HOST_OUT_EXECUTABLES)/emulator-mips \
@@ -95,7 +90,11 @@ MY_TOOLS := \
 
 MY_PLATFORM_TOOLS := \
 	$(HOST_OUT_EXECUTABLES)/adb \
-	$(HOST_OUT_EXECUTABLES)/fastboot
+	$(HOST_OUT_EXECUTABLES)/dmtracedump \
+	$(HOST_OUT_EXECUTABLES)/etc1tool \
+	$(HOST_OUT_EXECUTABLES)/fastboot \
+	$(HOST_OUT_EXECUTABLES)/hprof-conv \
+	$(HOST_OUT_EXECUTABLES)/sqlite3
 
 MY_BUILD_TOOLS := \
 	$(HOST_OUT_EXECUTABLES)/aapt \
@@ -103,10 +102,12 @@ MY_BUILD_TOOLS := \
 	$(HOST_OUT_EXECUTABLES)/dexdump \
 	$(HOST_OUT_EXECUTABLES)/llvm-rs-cc \
 	$(HOST_OUT_EXECUTABLES)/bcc_compat \
+	$(HOST_OUT_EXECUTABLES)/zipalign \
 	$(HOST_OUT_SHARED_LIBRARIES)/libLLVM.so \
 	$(HOST_OUT_SHARED_LIBRARIES)/libbcc.so \
 	$(HOST_OUT_SHARED_LIBRARIES)/libbcinfo.so \
-	$(HOST_OUT_SHARED_LIBRARIES)/libclang.so
+	$(HOST_OUT_SHARED_LIBRARIES)/libclang.so \
+	$(HOST_OUT_SHARED_LIBRARIES)/libc++.so
 
 tools: $(MY_TOOLS) $(MY_PLATFORM_TOOLS) $(MY_BUILD_TOOLS)
 	$(HOST_OUT_EXECUTABLES)/adb kill-server
@@ -125,10 +126,12 @@ MY_GL_LIBS := \
 	$(HOST_OUT_SHARED_LIBRARIES)/libGLES_CM_translator.so \
 	$(HOST_OUT_SHARED_LIBRARIES)/libGLES_V2_translator.so \
 	$(HOST_OUT_SHARED_LIBRARIES)/libEGL_translator.so \
+	$(HOST_OUT_SHARED_LIBRARIES)/libemugl_test_shared_library.so \
 	$(HOST_OUT_SHARED_LIBRARIES)/lib64OpenglRender.so \
 	$(HOST_OUT_SHARED_LIBRARIES)/lib64GLES_CM_translator.so \
 	$(HOST_OUT_SHARED_LIBRARIES)/lib64GLES_V2_translator.so \
-	$(HOST_OUT_SHARED_LIBRARIES)/lib64EGL_translator.so
+	$(HOST_OUT_SHARED_LIBRARIES)/lib64EGL_translator.so \
+	$(HOST_OUT_SHARED_LIBRARIES)/lib64emugl_test_shared_library.so
 
 opengl: $(MY_GL_LIBS)
 	cp $(MY_GL_LIBS) $(MY_ANDROID_DIR)/tools/lib/
