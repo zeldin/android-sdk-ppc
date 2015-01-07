@@ -6,15 +6,17 @@ ppcsdk_subdirs = \
 	system/core/libcutils \
 	system/core/liblog \
 	system/core/libsparse \
+	system/core/libutils \
+	system/core/libziparchive \
 	system/core/libzipfile \
 	system/extras/ext4_utils \
 	frameworks/base \
 	frameworks/compile/libbcc \
-	frameworks/compile/linkloader \
 	frameworks/compile/mclinker \
 	frameworks/compile/slang \
 	frameworks/native/libs \
 	frameworks/native/opengl/libs \
+	frameworks/rs \
 	frameworks/support \
 	frameworks/opt/telephony \
 	development/tools/etc1tool \
@@ -26,14 +28,18 @@ ppcsdk_subdirs = \
 	external/ant-glob \
 	external/bouncycastle \
 	external/clang \
+	external/compiler-rt \
 	external/easymock \
 	external/eclipse-windowbuilder \
 	external/expat \
 	external/hamcrest \
 	external/junit \
+	external/libcxx \
+	external/libcxxabi \
 	external/liblzf \
 	external/libphonenumber \
 	external/libpng \
+	external/libunwind \
 	external/llvm \
 	external/zlib \
 	external/nist-sip \
@@ -46,6 +52,7 @@ ppcsdk_subdirs = \
 	external/sqlite \
 	external/tagsoup \
 	external/qemu \
+	sdk/adtproductbuild \
 	sdk/emulator/mksdcard \
 	sdk/emulator/opengl \
 	sdk/monitor \
