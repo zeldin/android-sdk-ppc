@@ -160,3 +160,24 @@
 [submodule "frameworks/compile/linkloader"]
 	path = frameworks/compile/linkloader
 	url = https://android.googlesource.com/platform/frameworks/compile/linkloader
+[submodule "external/gtest"]
+	path = external/gtest
+	url = https://android.googlesource.com/platform/external/gtest.git
+[submodule "external/libcxxabi"]
+	path = external/libcxxabi
+	url = https://android.googlesource.com/platform/external/libcxxabi
+[submodule "external/compiler-rt"]
+	path = external/compiler-rt
+	url = git://github.com/zeldin/platform_external_compiler-rt
+[submodule "external/libunwind"]
+	path = external/libunwind
+	url = git://github.com/zeldin/platform_external_libunwind
+[submodule "tools/buildSrc"]
+	path = tools/buildSrc
+	url = https://android.googlesource.com/platform/tools/buildSrc
+[submodule "tools/gradle"]
+	path = tools/gradle
+	url = https://android.googlesource.com/platform/tools/gradle
+[submodule "prebuilts/eclipse-build-deps"]
+	path = prebuilts/eclipse-build-deps
+	url = https://android.googlesource.com/platform/prebuilts/eclipse-build-deps
