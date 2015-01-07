@@ -1,1 +1,4 @@
 /out
+/tools/build.gradle
+/tools/gradlew
+/tools/settings.gradle
