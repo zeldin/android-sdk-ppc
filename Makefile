@@ -3,7 +3,7 @@ ANDROID_INSTALL_DIR = /usr/local/android
 
 ANDROID_JAVA_HOME=/usr/lib/jvm/ibm-jdk-bin-1.6
 
-BUILD_TOOLS_VER=19.0.1
+BUILD_TOOLS_VER=21.1.2
 
 # Build all the architecture dependant stuff by default
 .DEFAULT_GOAL := archdep
