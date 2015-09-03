@@ -18,7 +18,7 @@ Before you start, check that you have the following:
 * A toolchain capable of building 64-bit binaries.  This also entails having
   things like libc and libstdc++ available as 64-bit libraries.
 
-* Clang(++) 3.6.0, with this patch: http://llvm.org/bugs/show_bug.cgi?id=20826
+* Clang(++) 3.7.0
 
 * Xorg and Mesa libraries, in both 32-bit and 64-bit variants.
 
