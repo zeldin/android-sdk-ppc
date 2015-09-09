@@ -181,3 +181,18 @@
 [submodule "prebuilts/eclipse-build-deps"]
 	path = prebuilts/eclipse-build-deps
 	url = https://android.googlesource.com/platform/prebuilts/eclipse-build-deps
+[submodule "external/icu"]
+	path = external/icu
+	url = https://android.googlesource.com/platform/external/icu
+[submodule "external/pcre"]
+	path = external/pcre
+	url = https://android.googlesource.com/platform/external/pcre
+[submodule "external/f2fs-tools"]
+	path = external/f2fs-tools
+	url = https://android.googlesource.com/platform/external/f2fs-tools
+[submodule "external/e2fsprogs"]
+	path = external/e2fsprogs
+	url = https://android.googlesource.com/platform/external/e2fsprogs
+[submodule "external/zopfli"]
+	path = external/zopfli
+	url = https://android.googlesource.com/platform/external/zopfli

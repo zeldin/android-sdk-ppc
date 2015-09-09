@@ -22,13 +22,13 @@ Before you start, check that you have the following:
 
 * Xorg and Mesa libraries, in both 32-bit and 64-bit variants.
 
-* IBM JDK 1.6
+* OpenJDK 7 with IcedTea
 
 
 Installation
 ============
 
-* First, download `android-sdk_r22-linux.tgz` from
+* First, download `android-sdk_r24.3.4-linux.tgz` from
   <http://developer.android.com/sdk/index.html>.  This contains the
   architecture independant part of the tools (and a bunch of x86 binaries,
   go figure...)
@@ -38,7 +38,8 @@ Installation
   `tools`, `platforms` and `add-ons`) is your `ANDROID_INSTALL_DIR`.
 
 * Next, edit the Makefile for this project to set the `ANDROID_INSTALL_DIR`
-  variable to the directory just mentioned.
+  variable to the directory just mentioned.  Also update the path to
+  OpenJDK if needed.
 
 * Now, you can run `make` in the `android-sdk-ppc` directory to build and
   install all the architecture dependant stuff for PPC.
@@ -51,10 +52,10 @@ Installation
 
 * The first thing you should do is to upgrade the Android SDK Tools to the
   latest version (if that's not the version you already have), and install
-  the Android SDK Platform-tools and Android SDK Build-tools.  Ignore any
-  warnings about ADB server failing to start or stop.  When the latest
-  version of both packages is installed (several upgrade steps may be needed),
-  quit the Android SDK Manager.
+  the Android SDK Platform-tools and Android SDK Build-tools (version 23.0.1).
+  Ignore any warnings about ADB server failing to start or stop.  When the
+  latest version of both packages is installed (several upgrade steps may
+  be needed), quit the Android SDK Manager.
 
 * Unfortunately, installing/upgrading the Tools, Platform-tools  and/or
   Build-tools package, like you just did, will overwrite the PPC binaries
