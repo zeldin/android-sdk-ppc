@@ -155,13 +155,11 @@ monitor: $(HOST_OUT_ROOT)/maven/$(BUNDLES_VERSION)/$(BUNDLES_VERSION).zip
 	cp -TR $(HOST_OUT_ROOT)/maven/$(BUNDLES_VERSION)/products/monitorproduct/linux/gtk/ppc/monitor $(MY_ANDROID_DIR)/tools/lib/monitor-ppc
 	cp -TR $(HOST_OUT_ROOT)/maven/$(BUNDLES_VERSION)/products/monitorproduct/linux/gtk/ppc64/monitor $(MY_ANDROID_DIR)/tools/lib/monitor-ppc64
 
-$(HOST_OUT_ROOT)/maven/$(BUNDLES_VERSION)/$(BUNDLES_VERSION).zip: tools/gradlew
+$(HOST_OUT_ROOT)/maven/$(BUNDLES_VERSION)/$(BUNDLES_VERSION).zip: tools/gradlew tools/build.gradle tools/settings.gradle
 	@cd tools && ./gradlew publishLocal :sdk:eclipse:copydeps :sdk:eclipse:buildEclipse
 
-tools/gradlew: tools/buildSrc/base/gradlew
-	cp tools/buildSrc/base/build.gradle tools/
-	cp tools/buildSrc/base/settings.gradle tools/
-	cp tools/buildSrc/base/gradlew tools/
+tools/%: tools/buildSrc/base/%
+	cp $< $@
 
 swt_jar: $(HOST_OUT_JAVA_LIBRARIES)/swt.jar
 	test -d $(MY_ANDROID_DIR)/tools/lib/ppc || mkdir $(MY_ANDROID_DIR)/tools/lib/ppc
