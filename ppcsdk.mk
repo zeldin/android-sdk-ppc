@@ -134,9 +134,13 @@ MY_EMULATOR_BINARIES := \
 	$(EMULATOR_OUT)/emulator-arm \
 	$(EMULATOR_OUT)/emulator-mips \
 	$(EMULATOR_OUT)/emulator-x86 \
+	$(EMULATOR_OUT)/emulator-ranchu-arm64 \
+	$(EMULATOR_OUT)/emulator-ranchu-mips64 \
 	$(EMULATOR_OUT)/emulator64-arm \
 	$(EMULATOR_OUT)/emulator64-mips \
-	$(EMULATOR_OUT)/emulator64-x86
+	$(EMULATOR_OUT)/emulator64-x86 \
+	$(EMULATOR_OUT)/emulator64-ranchu-arm64 \
+	$(EMULATOR_OUT)/emulator64-ranchu-mips64
 
 MY_EMULATOR_LIBS := \
 	$(EMULATOR_OUT)/lib/libOpenglRender.so \
