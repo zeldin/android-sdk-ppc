@@ -55,7 +55,6 @@ ppcsdk_subdirs = \
 	external/stlport \
 	external/sqlite \
 	external/tagsoup \
-	external/qemu \
 	external/zopfli \
 	sdk/adtproductbuild \
 	sdk/emulator/mksdcard \
@@ -85,13 +84,6 @@ include build/core/root.mk
 
 MY_TOOLS := \
 	$(HOST_OUT_EXECUTABLES)/mksdcard \
-	$(HOST_OUT_EXECUTABLES)/emulator \
-	$(HOST_OUT_EXECUTABLES)/emulator-arm \
-	$(HOST_OUT_EXECUTABLES)/emulator-mips \
-	$(HOST_OUT_EXECUTABLES)/emulator-x86 \
-	$(HOST_OUT_EXECUTABLES)/emulator64-arm \
-	$(HOST_OUT_EXECUTABLES)/emulator64-mips \
-	$(HOST_OUT_EXECUTABLES)/emulator64-x86
 
 MY_PLATFORM_TOOLS := \
 	$(HOST_OUT_EXECUTABLES)/adb \
@@ -134,20 +126,40 @@ tools: $(MY_TOOLS) $(MY_PLATFORM_TOOLS) $(MY_PLATFORM_TOOLS_LIBS) $(MY_BUILD_TOO
 	cp ld-command $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/mipsel-linux-android-ld
 	cp ld-command $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/arm-linux-androideabi-ld
 
-MY_GL_LIBS := \
-	$(HOST_OUT_SHARED_LIBRARIES)/libOpenglRender.so \
-	$(HOST_OUT_SHARED_LIBRARIES)/libGLES_CM_translator.so \
-	$(HOST_OUT_SHARED_LIBRARIES)/libGLES_V2_translator.so \
-	$(HOST_OUT_SHARED_LIBRARIES)/libEGL_translator.so \
-	$(HOST_OUT_SHARED_LIBRARIES)/libemugl_test_shared_library.so \
-	$(HOST_OUT_SHARED_LIBRARIES)/lib64OpenglRender.so \
-	$(HOST_OUT_SHARED_LIBRARIES)/lib64GLES_CM_translator.so \
-	$(HOST_OUT_SHARED_LIBRARIES)/lib64GLES_V2_translator.so \
-	$(HOST_OUT_SHARED_LIBRARIES)/lib64EGL_translator.so \
-	$(HOST_OUT_SHARED_LIBRARIES)/lib64emugl_test_shared_library.so
+EMULATOR_OUT := $(HOST_OUT)/emulator
 
-opengl: $(MY_GL_LIBS)
-	cp $(MY_GL_LIBS) $(MY_ANDROID_DIR)/tools/lib/
+MY_EMULATOR_BINARIES := \
+	$(EMULATOR_OUT)/emulator \
+	$(EMULATOR_OUT)/emulator-arm \
+	$(EMULATOR_OUT)/emulator-mips \
+	$(EMULATOR_OUT)/emulator-x86 \
+	$(EMULATOR_OUT)/emulator64-arm \
+	$(EMULATOR_OUT)/emulator64-mips \
+	$(EMULATOR_OUT)/emulator64-x86
+
+MY_EMULATOR_LIBS := \
+	$(EMULATOR_OUT)/lib/libOpenglRender.so \
+	$(EMULATOR_OUT)/lib/libGLES_CM_translator.so \
+	$(EMULATOR_OUT)/lib/libGLES_V2_translator.so \
+	$(EMULATOR_OUT)/lib/libEGL_translator.so \
+	$(EMULATOR_OUT)/lib/libemugl_test_shared_library.so
+
+MY_EMULATOR_LIBS64 := \
+	$(EMULATOR_OUT)/lib64/lib64OpenglRender.so \
+	$(EMULATOR_OUT)/lib64/lib64GLES_CM_translator.so \
+	$(EMULATOR_OUT)/lib64/lib64GLES_V2_translator.so \
+	$(EMULATOR_OUT)/lib64/lib64EGL_translator.so \
+	$(EMULATOR_OUT)/lib64/lib64emugl_test_shared_library.so
+
+emulator: $(EMULATOR_OUT)/config-host.h $(EMULATOR_OUT)/config.make
+	cd external/qemu && make -j2 OBJS_DIR=../../$(EMULATOR_OUT)
+	cp $(MY_EMULATOR_BINARIES) $(MY_ANDROID_DIR)/tools/
+	cp $(MY_EMULATOR_LIBS) $(MY_ANDROID_DIR)/tools/lib/
+	cp $(MY_EMULATOR_LIBS64) $(MY_ANDROID_DIR)/tools/lib64/
+
+$(EMULATOR_OUT)/config-host.h $(EMULATOR_OUT)/config.make:
+	external/qemu/android-configure.sh --out-dir=../../$(EMULATOR_OUT) --verbose --no-pcbios --cc=gcc
+
 
 BUNDLES_VERSION := bundles-24.3.3-SNAPSHOT
 
@@ -165,5 +177,5 @@ swt_jar: $(HOST_OUT_JAVA_LIBRARIES)/swt.jar
 	test -d $(MY_ANDROID_DIR)/tools/lib/ppc || mkdir $(MY_ANDROID_DIR)/tools/lib/ppc
 	cp $(HOST_OUT_JAVA_LIBRARIES)/swt.jar $(MY_ANDROID_DIR)/tools/lib/ppc/
 
-archdep: tools opengl monitor swt_jar
+archdep: tools emulator monitor swt_jar
 
