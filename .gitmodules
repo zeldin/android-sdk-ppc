@@ -196,3 +196,6 @@
 [submodule "external/zopfli"]
 	path = external/zopfli
 	url = https://android.googlesource.com/platform/external/zopfli
+[submodule "external/qemu-android"]
+	path = external/qemu-android
+	url = https://android.googlesource.com/platform/external/qemu-android.git

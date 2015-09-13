@@ -165,6 +165,32 @@ emulator: $(EMULATOR_OUT)/config-host.h $(EMULATOR_OUT)/config.make
 $(EMULATOR_OUT)/config-host.h $(EMULATOR_OUT)/config.make:
 	external/qemu/android-configure.sh --out-dir=../../$(EMULATOR_OUT) --verbose --no-pcbios --cc=gcc
 
+EMULATOR32_OUT := $(HOST_OUT)/qemu-linux-ppc
+EMULATOR64_OUT := $(HOST_OUT)/qemu-linux-ppc64
+
+MY_EMULATOR32_BINARIES := \
+	$(EMULATOR32_OUT)/aarch64-softmmu/qemu-system-aarch64 \
+	$(EMULATOR32_OUT)/mips64el-softmmu/qemu-system-mips64el
+
+MY_EMULATOR64_BINARIES := \
+	$(EMULATOR64_OUT)/aarch64-softmmu/qemu-system-aarch64 \
+	$(EMULATOR64_OUT)/mips64el-softmmu/qemu-system-mips64el
+
+emulator2: $(EMULATOR32_OUT)/config-host.mak $(EMULATOR64_OUT)/config-host.mak
+	cd $(EMULATOR32_OUT) && make -j2
+	cd $(EMULATOR64_OUT) && make -j2
+	test -d $(MY_ANDROID_DIR)/tools/qemu || mkdir $(MY_ANDROID_DIR)/tools/qemu
+	test -d $(MY_ANDROID_DIR)/tools/qemu/linux-ppc || mkdir $(MY_ANDROID_DIR)/tools/qemu/linux-ppc
+	test -d $(MY_ANDROID_DIR)/tools/qemu/linux-ppc64 || mkdir $(MY_ANDROID_DIR)/tools/qemu/linux-ppc64
+	cp $(MY_EMULATOR32_BINARIES) $(MY_ANDROID_DIR)/tools/qemu/linux-ppc/
+	cp $(MY_EMULATOR64_BINARIES) $(MY_ANDROID_DIR)/tools/qemu/linux-ppc64/
+
+$(HOST_OUT)/qemu-linux-%/config-host.mak: external/qemu-android/dtc/Makefile
+	@test -d $(@D) || mkdir $(@D)
+	cd $(@D) && $(CURDIR)/external/qemu-android/configure --cpu=$* --target-list="aarch64-softmmu mips64el-softmmu" --extra-ldflags="-static-libgcc -static-libstdc++ -ldl -lm" --audio-drv-list=pa --disable-attr --disable-blobs --disable-cap-ng --disable-curl --disable-curses --disable-docs --disable-glusterfs --disable-gtk --disable-guest-agent --disable-libnfs --disable-libiscsi --disable-libssh2 --disable-libusb --disable-quorum --disable-seccomp --disable-spice --disable-smartcard-nss --disable-usb-redir --disable-user --disable-vde --disable-vhdx --disable-vhost-net --disable-vte --disable-werror --with-sdlabi=2.0
+
+external/qemu-android/dtc/Makefile:
+	cd external/qemu-android && git submodule update --init dtc
 
 BUNDLES_VERSION := bundles-24.3.3-SNAPSHOT
 
@@ -182,5 +208,5 @@ swt_jar: $(HOST_OUT_JAVA_LIBRARIES)/swt.jar
 	test -d $(MY_ANDROID_DIR)/tools/lib/ppc || mkdir $(MY_ANDROID_DIR)/tools/lib/ppc
 	cp $(HOST_OUT_JAVA_LIBRARIES)/swt.jar $(MY_ANDROID_DIR)/tools/lib/ppc/
 
-archdep: tools emulator monitor swt_jar
+archdep: tools emulator emulator2 monitor swt_jar
 
