@@ -192,6 +192,51 @@ $(HOST_OUT)/qemu-linux-%/config-host.mak: external/qemu-android/dtc/Makefile
 external/qemu-android/dtc/Makefile:
 	cd external/qemu-android && git submodule update --init dtc
 
+MESA_OUT := $(HOST_OUT)/mesa
+MESA_PATCHES := $(MESA_OUT)/MesaLib-10.4.2-patches
+MESA_ARCHIVE := $(MESA_OUT)/MesaLib-10.4.2.tar.bz2
+MESA_SRC := $(MESA_OUT)/Mesa-10.4.2
+MESA_URL := ftp://ftp.freedesktop.org/pub/mesa/10.4.2/MesaLib-10.4.2.tar.bz2
+
+MESA_LIBS := \
+	$(MESA_SRC)/build/linux-ppc/gallium/targets/libgl-xlib/libGL.so.1 \
+	$(MESA_SRC)/build/linux-ppc/gallium/targets/libgl-xlib/libGL.so \
+	$(MESA_SRC)/build/linux-ppc/gallium/targets/osmesa/libosmesa.so
+
+MESA_LIBS64 := \
+	$(MESA_SRC)/build/linux-ppc64/gallium/targets/libgl-xlib/libGL.so.1 \
+	$(MESA_SRC)/build/linux-ppc64/gallium/targets/libgl-xlib/libGL.so \
+	$(MESA_SRC)/build/linux-ppc64/gallium/targets/osmesa/libosmesa.so
+
+mesa : $(MESA_LIBS) $(MESA_LIBS64)
+	test -d $(MY_ANDROID_DIR)/tools/lib/gles_mesa || mkdir $(MY_ANDROID_DIR)/tools/lib/gles_mesa
+	test -d $(MY_ANDROID_DIR)/tools/lib64/gles_mesa || mkdir $(MY_ANDROID_DIR)/tools/lib64/gles_mesa
+	cp -Lf $(MESA_LIBS) $(MY_ANDROID_DIR)/tools/lib/gles_mesa
+	cp -Lf $(MESA_LIBS64) $(MY_ANDROID_DIR)/tools/lib64/gles_mesa
+
+$(MESA_LIBS) : $(MESA_OUT)/.patched
+	scons -j2 -C $(MESA_SRC) build=release llvm=no verbose=true machine=ppc libgl-xlib libgl-osmesa
+
+$(MESA_LIBS64) : $(MESA_OUT)/.patched
+	scons -j2 -C $(MESA_SRC) build=release llvm=no verbose=true machine=ppc64 libgl-xlib libgl-osmesa
+
+$(MESA_OUT)/.patched: $(MESA_PATCHES) mesa_scons.patch | $(MESA_SRC)
+	for f in $(MESA_PATCHES)/*.patch; do patch -p1 -d $(MESA_SRC) < $$f; done
+	patch -p1 -d $(MESA_SRC) < mesa_scons.patch
+	touch $@
+
+$(MESA_SRC): $(MESA_ARCHIVE)
+	tar -C $(MESA_OUT) -x -j -f $(MESA_ARCHIVE)
+
+$(MESA_ARCHIVE): | $(MESA_OUT)
+	curl -L -o $@ $(MESA_URL)
+
+$(MESA_PATCHES): | $(MESA_OUT)
+	tar -C $(MESA_OUT) -x -J -f external/qemu/android/dependencies/$(notdir $(MESA_PATCHES)).tar.xz
+
+$(MESA_OUT):
+	test -d $@ || mkdir $@
+
 BUNDLES_VERSION := bundles-24.3.3-SNAPSHOT
 
 monitor: $(HOST_OUT_ROOT)/maven/$(BUNDLES_VERSION)/$(BUNDLES_VERSION).zip
@@ -208,5 +253,5 @@ swt_jar: $(HOST_OUT_JAVA_LIBRARIES)/swt.jar
 	test -d $(MY_ANDROID_DIR)/tools/lib/ppc || mkdir $(MY_ANDROID_DIR)/tools/lib/ppc
 	cp $(HOST_OUT_JAVA_LIBRARIES)/swt.jar $(MY_ANDROID_DIR)/tools/lib/ppc/
 
-archdep: tools emulator emulator2 monitor swt_jar
+archdep: tools emulator emulator2 mesa monitor swt_jar
 

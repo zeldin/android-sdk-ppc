@@ -1,0 +1,46 @@
+--- Mesa-10.4.2/common.py.orig	2015-09-15 12:04:40.000000000 +0200
++++ Mesa-10.4.2/common.py	2015-09-15 12:04:49.000000000 +0200
+@@ -87,7 +87,7 @@
+ 	                  allowed_values=('debug', 'checked', 'profile', 'release')))
+ 	opts.Add(BoolOption('verbose', 'verbose output', 'no'))
+ 	opts.Add(EnumOption('machine', 'use machine-specific assembly code', default_machine,
+-											 allowed_values=('generic', 'ppc', 'x86', 'x86_64')))
++											 allowed_values=('generic', 'ppc', 'ppc64', 'x86', 'x86_64')))
+ 	opts.Add(EnumOption('platform', 'target platform', host_platform,
+ 											 allowed_values=('cygwin', 'darwin', 'freebsd', 'haiku', 'linux', 'sunos', 'windows')))
+ 	opts.Add(BoolOption('embedded', 'embedded build', 'no'))
+--- Mesa-10.4.2/scons/gallium.py.orig	2015-09-15 12:02:22.000000000 +0200
++++ Mesa-10.4.2/scons/gallium.py	2015-09-15 12:06:14.000000000 +0200
+@@ -409,6 +409,10 @@
+             ccflags += ['-m64']
+             if platform == 'darwin':
+                 ccflags += ['-fno-common']
++        if env['machine'] == 'ppc':
++            ccflags += ['-m32']
++        if env['machine'] == 'ppc64':
++            ccflags += ['-m64']
+         if env['platform'] not in ('cygwin', 'haiku', 'windows'):
+             ccflags += ['-fvisibility=hidden']
+         # See also:
+@@ -514,6 +518,10 @@
+             env.Append(ASFLAGS = ['-m32'])
+         if env['machine'] == 'x86_64':
+             env.Append(ASFLAGS = ['-m64'])
++        if env['machine'] == 'ppc':
++            env.Append(ASFLAGS = ['-m32'])
++        if env['machine'] == 'ppc64':
++            env.Append(ASFLAGS = ['-m64'])
+ 
+     # Linker options
+     linkflags = []
+@@ -523,6 +531,10 @@
+             linkflags += ['-m32']
+         if env['machine'] == 'x86_64':
+             linkflags += ['-m64']
++        if env['machine'] == 'ppc':
++            linkflags += ['-m32']
++        if env['machine'] == 'ppc64':
++            linkflags += ['-m64']
+         if env['platform'] not in ('darwin'):
+             shlinkflags += [
+                 '-Wl,-Bsymbolic',
