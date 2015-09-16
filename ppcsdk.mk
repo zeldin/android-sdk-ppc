@@ -115,14 +115,19 @@ MY_BUILD_TOOLS_LIBS := \
 tools: $(MY_TOOLS) $(MY_PLATFORM_TOOLS) $(MY_PLATFORM_TOOLS_LIBS) $(MY_BUILD_TOOLS) $(MY_BUILD_TOOLS_LIBS)
 	$(HOST_OUT_EXECUTABLES)/adb kill-server
 	cp $(MY_TOOLS) $(MY_ANDROID_DIR)/tools/
+	strip -S $(addprefix $(MY_ANDROID_DIR)/tools/,$(notdir $(MY_TOOLS)))
 	test -d $(MY_ANDROID_DIR)/platform-tools || mkdir $(MY_ANDROID_DIR)/platform-tools
 	cp $(MY_PLATFORM_TOOLS) $(MY_ANDROID_DIR)/platform-tools/
+	strip -S $(addprefix $(MY_ANDROID_DIR)/platform-tools/,$(notdir $(MY_PLATFORM_TOOLS)))
 	cp $(MY_PLATFORM_TOOLS_LIBS) $(MY_ANDROID_DIR)/platform-tools/lib/
+	strip -S $(addprefix $(MY_ANDROID_DIR)/platform-tools/lib/,$(notdir $(MY_PLATFORM_TOOLS_LIBS)))
 	test -d $(MY_ANDROID_DIR)/build-tools || mkdir $(MY_ANDROID_DIR)/build-tools
 	test -d $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER) || mkdir $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)
 	test -d $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/lib || mkdir $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/lib
 	cp $(MY_BUILD_TOOLS) $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/
+	strip -S $(addprefix $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/,$(notdir $(MY_BUILD_TOOLS)))
 	cp $(MY_BUILD_TOOLS_LIBS) $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/lib/
+	strip -S $(addprefix $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/lib/,$(notdir $(MY_BUILD_TOOLS_LIBS)))
 	cp ld-command $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/i686-linux-android-ld
 	cp ld-command $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/mipsel-linux-android-ld
 	cp ld-command $(MY_ANDROID_DIR)/build-tools/$(MY_BUILD_TOOLS_VER)/arm-linux-androideabi-ld
@@ -159,8 +164,11 @@ MY_EMULATOR_LIBS64 := \
 emulator: $(EMULATOR_OUT)/config-host.h $(EMULATOR_OUT)/config.make
 	cd external/qemu && make -j2 OBJS_DIR=../../$(EMULATOR_OUT)
 	cp $(MY_EMULATOR_BINARIES) $(MY_ANDROID_DIR)/tools/
+	strip -S $(addprefix $(MY_ANDROID_DIR)/tools/,$(notdir $(MY_EMULATOR_BINARIES)))
 	cp $(MY_EMULATOR_LIBS) $(MY_ANDROID_DIR)/tools/lib/
+	strip -S $(addprefix $(MY_ANDROID_DIR)/tools/lib/,$(notdir $(MY_EMULATOR_LIBS)))
 	cp $(MY_EMULATOR_LIBS64) $(MY_ANDROID_DIR)/tools/lib64/
+	strip -S $(addprefix $(MY_ANDROID_DIR)/tools/lib64/,$(notdir $(MY_EMULATOR_LIBS64)))
 
 $(EMULATOR_OUT)/config-host.h $(EMULATOR_OUT)/config.make:
 	external/qemu/android-configure.sh --out-dir=../../$(EMULATOR_OUT) --verbose --no-pcbios --cc=gcc
@@ -183,7 +191,9 @@ emulator2: $(EMULATOR32_OUT)/config-host.mak $(EMULATOR64_OUT)/config-host.mak
 	test -d $(MY_ANDROID_DIR)/tools/qemu/linux-ppc || mkdir $(MY_ANDROID_DIR)/tools/qemu/linux-ppc
 	test -d $(MY_ANDROID_DIR)/tools/qemu/linux-ppc64 || mkdir $(MY_ANDROID_DIR)/tools/qemu/linux-ppc64
 	cp $(MY_EMULATOR32_BINARIES) $(MY_ANDROID_DIR)/tools/qemu/linux-ppc/
+	strip -S $(addprefix $(MY_ANDROID_DIR)/tools/qemu/linux-ppc/,$(notdir $(MY_EMULATOR32_BINARIES)))
 	cp $(MY_EMULATOR64_BINARIES) $(MY_ANDROID_DIR)/tools/qemu/linux-ppc64/
+	strip -S $(addprefix $(MY_ANDROID_DIR)/tools/qemu/linux-ppc64/,$(notdir $(MY_EMULATOR64_BINARIES)))
 
 $(HOST_OUT)/qemu-linux-%/config-host.mak: external/qemu-android/dtc/Makefile
 	@test -d $(@D) || mkdir $(@D)
@@ -212,7 +222,9 @@ mesa : $(MESA_LIBS) $(MESA_LIBS64)
 	test -d $(MY_ANDROID_DIR)/tools/lib/gles_mesa || mkdir $(MY_ANDROID_DIR)/tools/lib/gles_mesa
 	test -d $(MY_ANDROID_DIR)/tools/lib64/gles_mesa || mkdir $(MY_ANDROID_DIR)/tools/lib64/gles_mesa
 	cp -Lf $(MESA_LIBS) $(MY_ANDROID_DIR)/tools/lib/gles_mesa
+	strip -S $(addprefix $(MY_ANDROID_DIR)/tools/lib/gles_mesa/,$(notdir $(MESA_LIBS)))
 	cp -Lf $(MESA_LIBS64) $(MY_ANDROID_DIR)/tools/lib64/gles_mesa
+	strip -S $(addprefix $(MY_ANDROID_DIR)/tools/lib64/gles_mesa/,$(notdir $(MESA_LIBS64)))
 
 $(MESA_LIBS) : $(MESA_OUT)/.patched
 	scons -j2 -C $(MESA_SRC) build=release llvm=no verbose=true machine=ppc libgl-xlib libgl-osmesa
@@ -242,6 +254,9 @@ BUNDLES_VERSION := bundles-24.3.3-SNAPSHOT
 monitor: $(HOST_OUT_ROOT)/maven/$(BUNDLES_VERSION)/$(BUNDLES_VERSION).zip
 	cp -TR $(HOST_OUT_ROOT)/maven/$(BUNDLES_VERSION)/products/monitorproduct/linux/gtk/ppc/monitor $(MY_ANDROID_DIR)/tools/lib/monitor-ppc
 	cp -TR $(HOST_OUT_ROOT)/maven/$(BUNDLES_VERSION)/products/monitorproduct/linux/gtk/ppc64/monitor $(MY_ANDROID_DIR)/tools/lib/monitor-ppc64
+	find $(MY_ANDROID_DIR)/tools/lib/monitor-ppc $(MY_ANDROID_DIR)/tools/lib/monitor-ppc64 -name '*.so' -print0 | xargs -0 strip -S
+	strip -S $(MY_ANDROID_DIR)/tools/lib/monitor-ppc/monitor
+	strip -S $(MY_ANDROID_DIR)/tools/lib/monitor-ppc64/monitor
 
 $(HOST_OUT_ROOT)/maven/$(BUNDLES_VERSION)/$(BUNDLES_VERSION).zip: tools/gradlew tools/build.gradle tools/settings.gradle
 	@cd tools && ./gradlew publishLocal :sdk:eclipse:copydeps :sdk:eclipse:buildEclipse
